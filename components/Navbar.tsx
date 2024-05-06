@@ -9,37 +9,27 @@ import { IoMdLogOut } from "react-icons/io";
 
 const Navbar = () => {
   return (
-    <div className="flex items-center justify-between px-10 py-4 w-screen">
+    <div className="flex items-center justify-between w-screen px-10 py-4">
       <div className="flex items-center gap-2">
-        <Image src={SnapchatLogo} alt="snapchatLogo" width={50} height={50} />
-        <div className="relative">
-          <Input
-            placeholder="search"
-            type="text"
-            className="rounded-full outline-none border-none pl-10 pr-4 py-2"
-          />
-          <IoSearch className="absolute left-2 top-1/2 transform -translate-y-1/2 text-gray-400" />
-        </div>
+        <Image src={SnapchatLogo} width={50} height={50} alt="snapchat-logo" />
+        <Input type="text" placeholder="Search..." className="rounded-full" />
       </div>
-      <div>
-        <Button variant={"ghost"}>Stories</Button>
-        <Button variant={"ghost"}>Spotlight</Button>
-        <Button variant={"ghost"}>Chat</Button>
-        <Button variant={"ghost"}>Lenses</Button>
+      <div className="md:block hidden">
+        <Button variant="ghost">Stories</Button>
+        <Button variant="ghost">Spotlight</Button>
+        <Button variant="ghost">Chat</Button>
+        <Button variant="ghost">Lenses</Button>
       </div>
-      <div className="flex gap-2">
+      <div className="flex items-center gap-5">
         <Button
-          variant={"ghost"}
-          className="rounded-full bg-white text-black"
           size={"icon"}
+          variant={"secondary"}
+          className="rounded-full bg-white text-black"
         >
-          <TbGridDots size={"25px"} />
+          <TbGridDots size={"24px"} />
         </Button>
         <Button className="rounded-full">Snapchat Ads</Button>
         <Button className="rounded-full">Download</Button>
-        <Button className="rounded-full text-white" size={"icon"}>
-          <IoMdLogOut size={"20px"} />
-        </Button>
       </div>
     </div>
   );
