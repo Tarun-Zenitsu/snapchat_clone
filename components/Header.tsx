@@ -4,8 +4,12 @@ import Image from "next/image";
 import avatarImg from "@/public/myai-asset.webp";
 import { FaLaptop } from "react-icons/fa";
 import Link from "next/link";
+import { auth } from "@/auth";
+import { AiOutlineMessage } from "react-icons/ai";
 
-const Header = () => {
+const Header = async () => {
+  const autUser = await auth();
+
   return (
     <div className="flex justify-between max-w-6xl items-center mx-auto">
       <div>
@@ -17,12 +21,21 @@ const Header = () => {
           Chat, Snap, and video call your friends from <br />
           wherever you are.
         </h1>
-        <Link href={"/login"}>
-          <Button className="rounded-full gap-2">
-            <FaLaptop />
-            Login to chat
-          </Button>
-        </Link>
+        {autUser ? (
+          <Link href={"/login"}>
+            <Button className="rounded-full gap-2">
+              <AiOutlineMessage size="18px" />
+              Start Chat
+            </Button>
+          </Link>
+        ) : (
+          <Link href={"/login"}>
+            <Button className="rounded-full gap-2">
+              <FaLaptop />
+              Login to chat
+            </Button>
+          </Link>
+        )}
       </div>
       <div>
         <Image src={avatarImg} alt="avatarImg" width={650} height={650} />

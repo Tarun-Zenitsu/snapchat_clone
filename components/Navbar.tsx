@@ -2,12 +2,14 @@ import React from "react";
 import SnapchatLogo from "@/public/snapchat-log.png";
 import Image from "next/image";
 import { Input } from "./ui/input";
-import { IoSearch } from "react-icons/io5";
 import { Button } from "./ui/button";
 import { TbGridDots } from "react-icons/tb";
-import { IoMdLogOut } from "react-icons/io";
+import LogoutBtn from "./shared/LogoutBtn";
+import { auth } from "@/auth";
+import Link from "next/link";
 
-const Navbar = () => {
+const Navbar = async () => {
+  const authUser = await auth();
   return (
     <div className="flex items-center justify-between w-screen px-10 py-4">
       <div className="flex items-center gap-2">
@@ -30,6 +32,13 @@ const Navbar = () => {
         </Button>
         <Button className="rounded-full">Snapchat Ads</Button>
         <Button className="rounded-full">Download</Button>
+        {authUser ? (
+          <LogoutBtn />
+        ) : (
+          <Link href={"/login"}>
+            <Button className="rounded-full">Login</Button>
+          </Link>
+        )}
       </div>
     </div>
   );
