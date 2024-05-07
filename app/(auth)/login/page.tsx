@@ -1,11 +1,16 @@
+import { signIn } from "@/auth";
 import Login from "@/components/Login";
 import React from "react";
 
 const LoginPage = () => {
+  const signinHandler = async () => {
+    "use server";
+    await signIn("github");
+  };
   return (
-    <div>
+    <form action={signinHandler}>
       <Login />
-    </div>
+    </form>
   );
 };
 
