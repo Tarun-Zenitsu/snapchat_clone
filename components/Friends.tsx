@@ -1,10 +1,18 @@
 import React from "react";
 import Friend from "./Friend";
+import { auth } from "@/auth";
+import { getSidebarUsers } from "@/lib/userData";
 
-const Friends = () => {
+const Friends = async () => {
+  const authUser = await auth();
+  const otherUsers = authUser?.user
+    ? await getSidebarUsers(authUser?.user?._id)
+    : [];
   return (
-    <div>
-      <Friend />
+    <div className="flex-1 overflow-y-auto">
+      {otherUsers.map((user) => {
+        return <Friend key={user._id} user={user} />;
+      })}
     </div>
   );
 };

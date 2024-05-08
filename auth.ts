@@ -12,6 +12,25 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
   ],
   secret: process.env.NEXTAUTH_SECRET,
   callbacks: {
+    async session({ session }: { session: any }) {
+      try {
+        await connectDatabase();
+        if (session.user) {
+          const user = await User.findOne({ email: session.user.email });
+          if (user) {
+            session.user._id = user._id;
+            return session;
+          } else {
+            console.log("user not found");
+          }
+        } else {
+          console.log("Invelid session");
+        }
+      } catch (error) {
+        console.log(error);
+        throw error;
+      }
+    },
     async signIn({ account, profile }) {
       if (account?.provider === "github") {
         await connectDatabase();
