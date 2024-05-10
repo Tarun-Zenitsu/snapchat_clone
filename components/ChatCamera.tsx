@@ -6,6 +6,7 @@ import { readFileAsDataURL } from "@/lib/utils";
 const ChatCamera = () => {
   const imageRef = useRef<HTMLInputElement>(null);
   const [selectedFile, setSelectedFile] = useState<string>("");
+  const [fleg, setFleg] = useState(false);
   const fileChangeHandler = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target?.files?.[0];
     if (file) {
