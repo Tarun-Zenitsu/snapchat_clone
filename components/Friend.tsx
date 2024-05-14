@@ -5,7 +5,7 @@ import { Avatar, AvatarImage } from "./ui/avatar";
 const Friend = ({ user }: { user: any }) => {
   return (
     <Link
-      href={"/chat/"}
+      href={`/chat/${user._id}`}
       className="flex items-center justify-between border-b-2 border-[#E3E6E8 p-3 my-2"
     >
       <div className="flex gap-2">

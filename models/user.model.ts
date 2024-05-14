@@ -7,14 +7,14 @@ export interface UserInterface {
   porfilePhoto: string;
 }
 
-export interface UserDocoment extends UserInterface, Document {
+export interface UserDocument extends UserInterface, Document {
   createdAt: Date;
   updatedAt: Date;
 }
 
 //both userModel and userSchama are same
 
-const userModel = new mongoose.Schema<UserDocoment>(
+const userModel = new mongoose.Schema<UserDocument>(
   {
     username: {
       type: String,
@@ -38,5 +38,5 @@ const userModel = new mongoose.Schema<UserDocoment>(
   { timestamps: true }
 );
 
-export const User: Model<UserDocoment> =
+export const User: Model<UserDocument> =
   mongoose?.models?.User || mongoose.model("User", userModel);
