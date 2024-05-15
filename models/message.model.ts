@@ -1,9 +1,9 @@
 import mongoose, { Document, Model, PopulatedDoc, Types } from "mongoose";
-import { UserDocoment } from "./user.model";
+import { UserDocument } from "./user.model";
 
 export interface MessageInterface {
-  senderId: Types.ObjectId | PopulatedDoc<UserDocoment>;
-  reciverId: Types.ObjectId | PopulatedDoc<UserDocoment>;
+  senderId: Types.ObjectId | PopulatedDoc<UserDocument>;
+  receiverId: Types.ObjectId | PopulatedDoc<UserDocument>;
   content: string;
   messageType: "text" | "image";
   opened: boolean;
@@ -20,7 +20,7 @@ const messageModel = new mongoose.Schema<MessageDocument>(
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
     },
-    reciverId: {
+    receiverId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
     },
