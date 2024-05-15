@@ -1,5 +1,6 @@
 import { Message } from "@/models/message.model";
-import { User } from "@/models/user.model";
+import { User, UserDocument } from "@/models/user.model";
+import connectDatabase from "./db";
 
 export const getSidebarUsers = async (loggedInUserId: string) => {
   try {
@@ -30,6 +31,18 @@ export const getSidebarUsers = async (loggedInUserId: string) => {
       })
     );
     return userInfo;
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+};
+
+export const getUserProfile = async (userId: string) => {
+  try {
+    await connectDatabase();
+    const user: UserDocument | null = await User.findOne({ _id: userId });
+    if (!user) return "user not found";
+    return user;
   } catch (error) {
     console.log(error);
     throw error;
